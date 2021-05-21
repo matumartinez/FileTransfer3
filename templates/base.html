@@ -1,0 +1,25 @@
+{% load static %}
+
+<!doctype html>
+<html>
+<head>
+  <title>Asistente Virtual</title>
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/style.css' %}">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <ul>
+    <li><a href='/'>Home</a></li>
+    <li><a href='/devices'>Devices</a></li>
+    <li><a href='/stores'>Stores</a></li>
+    <li><a href='/videocalls'>Videocalls</a></li>
+  </ul>
+
+  {% block content %}
+
+  {% endblock content %}
+  
+</body>
+</html>

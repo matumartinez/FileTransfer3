@@ -1,0 +1,29 @@
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
+mydatabase
+data/
+
+# pyenv 
+.python-version 
+
+# Environments 
+.env 
+.venv 
+env/ 
+venv/ 
+ENV/ 
+
+# mypy 
+.mypy_cache/ 
+
+# sftp configuration file 
+sftp-config.json 
+bin
+
+#Express nodeJS
+node_modules

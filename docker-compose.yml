@@ -1,0 +1,52 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres:12
+    volumes:
+      - ./data/db:/var/lib/postgresql@12/data
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web_django:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  web_express-nodejs:
+    build: ./VideoCall
+    command: npm run devStart
+    volumes:
+      - .:/VideoCall/code2
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - web_django
+  web_express-nodejs-peer:
+    build: ./VideoCall
+    command: npm run peerStart
+    volumes:
+      - .:/VideoCall/code2
+    ports:
+      - "3001:3001"
+    depends_on: 
+      - web_express-nodejs
+  #reverse_proxy:
+    #image: nginx
+      #volumes:
+        #- ./templates:/etc/nginx/templates
+      #ports:
+        #- "8000:80"
+      #environment:
+        #- NGINX_HOST=foobar.com
+        #- NGINX_PORT=80
+
+    

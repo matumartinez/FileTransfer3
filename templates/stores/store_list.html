@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block  content %}
+<link rel="stylesheet" type="text/css" href="{% static 'devices/style.css' %}">
+
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      
+    </tr>
+    {% for store in stores %}
+      <tr>
+        <td>{{ store.name }}</td>
+        <td>{{ store.description }}</td>
+        <td><a href="{% url 'store-show' store.id %}">View</a></td>
+        <td><a href="{% url 'store-update' store.id %}">Edit</a></td>
+        <td><a href="{% url 'store-delete' store.id %}">Delete</a></td>
+      </tr>
+    {% endfor %}
+
+</table>
+<a href="{% url 'store-create' %}">Create store</a>
+{% endblock content %}

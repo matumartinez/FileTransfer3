@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block  content %}
+<link rel="stylesheet" type="text/css" href="{% static 'devices/style.css' %}">
+
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+    </tr>
+    {% for device in object_list %}
+      <tr>
+        <td>{{ device.name }}</td>
+        <td>{{ device.description }}</td>
+        <td>{{ device.price }}</td>
+        <td><a href='{{ device.get_absolute_url }}'>View</a></td>
+        <td><a href='{% url 'device-update' id=device.id %}'>Edit</a></td>
+        <td><a href='{% url 'device-delete' id=device.id %}'>Delete</a></td>
+      </tr>
+    {% endfor %}
+</table>
+
+<a href='{% url 'device-create' %}'>Create Product</a>
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block  content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'devices/style.css' %}">
+
+<table>
+    <tr>
+      <th>Link</th>
+    </tr>
+    {% for videocall in object_list %}
+      <tr>
+        <td>
+          <a href="{% url 'videocall-delete' videocall.id %}" target = '_blank'>Sala {{ videocall.id }}
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}
